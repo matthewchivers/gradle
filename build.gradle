@@ -6,6 +6,8 @@ plugins {
 group   = "dev.galasa"
 version = "0.1.0-SNAPSHOT" 
 
+def distRepo = System.getenv('MAVEN_REPO') ?: "https://nexus.galasa.dev/repository/maven-development"
+
 repositories {
     mavenCentral()
 }
@@ -48,8 +50,7 @@ publishing {
     repositories {
         maven {
             name = 'distRepo'
-            url  = "$distRepo"
-            
+            url  = distRepo
             credentials {
                 username "$mavenUsername"
                 password "$mavenPassword"
