@@ -52,8 +52,8 @@ publishing {
             name = 'distRepo'
             url  = distRepo
             credentials {
-                username "$mavenUsername"
-                password "$mavenPassword"
+                username "$MAVENUSERNAME"
+                password "$MAVENPASSWORD"
             }
         }
     }
