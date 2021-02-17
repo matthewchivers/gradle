@@ -1,61 +1,53 @@
-plugins {
-    id 'java-gradle-plugin'
-    id 'maven-publish'
-}
+subprojects {
 
-group   = "dev.galasa"
-version = "0.1.0-SNAPSHOT" 
+    apply plugin: 'java-gradle-plugin'
+    apply plugin: 'maven-publish'
 
-def distRepo = System.getenv('MAVEN_REPO') ?: "https://nexus.galasa.dev/repository/maven-development"
+    group = galasaGroup
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation 'org.apache.felix:org.apache.felix.bundlerepository:2.0.10'
-    implementation 'org.reflections:reflections:0.9.11'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    testImplementation 'junit:junit:4.13'
-}
-
-gradlePlugin {
-    // Define the plugins
-    plugins {
-        obr {
-            id = 'dev.galasa.obr'
-            implementationClass = 'dev.galasa.gradle.obr.ObrPlugin'
-        }
-        tests {
-            id = 'dev.galasa.tests'
-            implementationClass = 'dev.galasa.gradle.tests.TestsPlugin'
-        }
-        githash {
-            id = 'dev.galasa.githash'
-            implementationClass = 'dev.galasa.gradle.hashes.GitHashPlugin'
-        }
-        testcatalog {
-            id = 'dev.galasa.testcatalog'
-            implementationClass = 'dev.galasa.gradle.testcatalog.TestCatalogPlugin'
-        }
+    // If a plugin holds a different version to the root project,
+    // <plugin>/gradle.properties should be given the property "pluginVersion"
+    // e.g. pluginVersion=0.1.1
+    if (project.hasProperty('pluginVersion')){
+        version = pluginVersion
+    } else {
+        version = defaultPluginVersion
     }
-}
 
+    def distRepo = System.getenv('MAVEN_REPO') ?: "https://nexus.galasa.dev/repository/maven-development"
 
-publishing {
-    publications {
-        pluginMaven(MavenPublication) {
-        }
+    tasks.withType(PublishToMavenRepository) {
+        onlyIf { jar.didWork }
     }
+
     repositories {
-        maven {
-            name = 'distRepo'
-            url  = distRepo
-            credentials {
-                username "$MAVENUSERNAME"
-                password "$MAVENPASSWORD"
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'org.apache.felix:org.apache.felix.bundlerepository:2.0.10'
+        implementation 'org.reflections:reflections:0.9.11'
+        implementation 'com.google.code.gson:gson:2.8.5'
+        testImplementation 'junit:junit:4.13'
+    }
+    
+    publishing {
+        publications {
+            pluginMaven(MavenPublication) {
+            }
+        }
+        repositories {
+            maven {
+                name = 'distRepo'
+                url  = distRepo
+                credentials {
+                    username System.getenv('MAVENUSERNAME')
+                    password System.getenv('MAVENPASSWORD')
+                }
             }
         }
     }
+
 }
+
 

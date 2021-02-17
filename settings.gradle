@@ -1,1 +1,6 @@
-rootProject.name = 'dev.galasa.gradle.impl'
+rootProject.name = 'gradle'
+
+include 'dev.galasa.gradle.githash'
+include 'dev.galasa.gradle.obr'
+include 'dev.galasa.gradle.testcatalog'
+include 'dev.galasa.gradle.tests'

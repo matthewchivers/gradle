@@ -1,0 +1,10 @@
+description = 'Galasa Git Hash Plugin'
+
+gradlePlugin {
+    plugins {
+        githash {
+            id = 'dev.galasa.gradle.githash'
+            implementationClass = 'dev.galasa.gradle.githash.GitHashPlugin'
+        }
+    }
+}

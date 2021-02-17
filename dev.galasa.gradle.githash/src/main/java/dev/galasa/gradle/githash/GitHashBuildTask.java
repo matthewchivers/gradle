@@ -1,9 +1,9 @@
 /*
  * Licensed Materials - Property of IBM
  * 
- * (c) Copyright IBM Corp. 2020.
+ * (c) Copyright IBM Corp. 2020, 2021.
  */
-package dev.galasa.gradle.hashes;
+package dev.galasa.gradle.githash;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;

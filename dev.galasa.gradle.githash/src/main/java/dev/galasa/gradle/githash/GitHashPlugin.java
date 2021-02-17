@@ -3,7 +3,7 @@
  * 
  * (c) Copyright IBM Corp. 2020.
  */
-package dev.galasa.gradle.hashes;
+package dev.galasa.gradle.githash;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;

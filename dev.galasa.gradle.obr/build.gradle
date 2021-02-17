@@ -1,0 +1,10 @@
+description = 'Galasa OBR Plugin'
+
+gradlePlugin {
+    plugins {
+        obr {
+            id = 'dev.galasa.gradle.obr'
+            implementationClass = 'dev.galasa.gradle.obr.ObrPlugin'
+        }
+    }
+}

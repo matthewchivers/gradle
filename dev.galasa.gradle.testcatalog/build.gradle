@@ -1,0 +1,10 @@
+description = 'Galasa TestCatalog Plugin'
+
+gradlePlugin {
+    plugins {
+        testcatalog {
+            id = 'dev.galasa.gradle.testcatalog'
+            implementationClass = 'dev.galasa.gradle.testcatalog.TestCatalogPlugin'
+        }
+    }
+}

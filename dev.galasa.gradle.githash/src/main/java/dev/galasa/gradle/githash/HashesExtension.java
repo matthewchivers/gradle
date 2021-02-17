@@ -1,4 +1,4 @@
-package dev.galasa.gradle.hashes;
+package dev.galasa.gradle.githash;
 
 import javax.inject.Inject;
 

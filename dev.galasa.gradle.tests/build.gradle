@@ -1,0 +1,10 @@
+description = 'Galasa Tests Plugin'
+
+gradlePlugin {
+    plugins {
+        tests {
+            id = 'dev.galasa.gradle.tests'
+            implementationClass = 'dev.galasa.gradle.tests.TestsPlugin'
+        }
+    }
+}
