@@ -24,9 +24,9 @@ public class GitHashPlugin implements Plugin<Project> {
     }
 
     private void createHashBuildTask(Project project) {
-        // Create the new Task, called gentestcatalog
-        project.getTasks().create("githash", GitHashBuildTask.class, tcTask -> {
-            tcTask.apply();
+        // Create the new Task, called githash
+        project.getTasks().create("githash", GitHashBuildTask.class, ghbTask -> {
+            ghbTask.apply();
         });
     }
 

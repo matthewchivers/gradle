@@ -21,13 +21,13 @@ import org.gradle.jvm.tasks.Jar;
 public class GitHashBuildTask extends DefaultTask {
 
     private SourceSet sourceSet;
-    private File gitHash;
+    private File gitHashFile;
 
     @TaskAction
     public void buildHash() throws Exception {
 
         //*** Ensure the meta dir exists
-        gitHash.getParentFile().mkdirs();
+        gitHashFile.getParentFile().mkdirs();
         
         HashesExtension extension = getProject().getExtensions().findByType(HashesExtension.class);
         
@@ -36,7 +36,7 @@ public class GitHashBuildTask extends DefaultTask {
             gitHash = "unknown";
         }
         
-        Path path = Paths.get(this.gitHash.toURI());
+        Path path = Paths.get(this.gitHashFile.toURI());
         Files.write(path, gitHash.getBytes(StandardCharsets.UTF_8));
         
     }
@@ -61,7 +61,7 @@ public class GitHashBuildTask extends DefaultTask {
         File dirGenTestCatalog = new File(getProject().getBuildDir(),"hashes");
         File dirGenTestCatalogMeta = new File(dirGenTestCatalog,"META-INF");
         //*** dont need to create the file here, just indicate where it will be on the outputs
-        this.gitHash = new File(dirGenTestCatalogMeta,"git.hash");
+        this.gitHashFile = new File(dirGenTestCatalogMeta,"git.hash");
 
         //*** Tell the JAR task we want to it to include the meta-inf and json file
         jarTask.from(dirGenTestCatalog);
