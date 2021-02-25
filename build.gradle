@@ -32,10 +32,10 @@ subprojects {
     }
     
     publishing {
-        publications {
-            pluginMaven(MavenPublication) {
-            }
-        }
+        // publications {
+        //     pluginMaven(MavenPublication) {
+        //     }
+        // }
         repositories {
             maven {
                 name = 'distRepo'
