@@ -29,7 +29,7 @@ pipeline {
                usernamePassword(credentialsId: 'gradle-cache', usernameVariable: 'CACHEUSERNAME', passwordVariable: 'CACHEPASSWORD')
             ]) {
                withFolderProperties { 
-                  sh "gradle -s -Dgradle.user.home=${workspace}/.gradle -Psigning.gnupg.keyName=8534E695 -Psigning.gnupg.passphrase=$GPG ${GRADLE_CACHE} ${GRADLE_TASKS}"
+                  sh "gradle ${OUTPUT_VERBOSITY} -Dgradle.user.home=${workspace}/.gradle -Psigning.gnupg.keyName=8534E695 -Psigning.gnupg.passphrase=$GPG ${GRADLE_CACHE} ${GRADLE_TASKS}"
                }
             }
          }
